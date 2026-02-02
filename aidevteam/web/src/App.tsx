@@ -5,7 +5,7 @@ import { SystemPulse } from './components/SystemPulse';
 import { useSprintStore } from './store/sprintStore';
 
 function App() {
-  const { goal, setGoal, isRunning, startSprint, agents, artifacts, logs } = useSprintStore();
+  const { goal, setGoal, isRunning, startSprint, agents, artifacts, logs, error } = useSprintStore();
 
   return (
     <div className="min-h-screen p-8" style={{ backgroundColor: 'var(--color-deep-space)' }}>
@@ -30,6 +30,17 @@ function App() {
             onChange={(e) => setGoal(e.target.value)}
             disabled={isRunning}
           />
+
+          {/* Error display */}
+          {error && (
+            <div className="mt-3 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 text-sm">
+              <strong>Error:</strong> {error}
+              <p className="mt-1 text-red-300/70 text-xs">
+                Make sure the backend is running: <code className="bg-black/30 px-1 rounded">uvicorn aidevteam.api.server:app --reload</code>
+              </p>
+            </div>
+          )}
+
           <button
             onClick={startSprint}
             disabled={isRunning || !goal.trim()}
