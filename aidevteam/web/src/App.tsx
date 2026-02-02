@@ -36,7 +36,7 @@ function App() {
             <div className="mt-3 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 text-sm">
               <strong>Error:</strong> {error}
               <p className="mt-1 text-red-300/70 text-xs">
-                Make sure the backend is running: <code className="bg-black/30 px-1 rounded">uvicorn aidevteam.api.server:app --reload</code>
+                Make sure the backend is running: <code className="bg-black/30 px-1 rounded">PYTHONPATH=. uvicorn aidevteam.api.server:app --reload</code>
               </p>
             </div>
           )}
@@ -53,8 +53,8 @@ function App() {
         {/* Agent War Room */}
         <WarRoom agents={agents} />
 
-        {/* Artifact Gallery */}
-        <ArtifactGallery artifacts={artifacts} />
+        {/* Artifact Gallery - now with download and sprint goal */}
+        <ArtifactGallery artifacts={artifacts} sprintGoal={goal} />
 
         {/* System Pulse (Logs) */}
         <SystemPulse logs={logs} />
