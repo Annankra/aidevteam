@@ -1,21 +1,11 @@
 import './index.css';
-import { useState } from 'react';
 import { WarRoom } from './components/WarRoom';
 import { ArtifactGallery } from './components/ArtifactGallery';
 import { SystemPulse } from './components/SystemPulse';
-
-const initialAgents = [
-  { id: 'po', name: 'Product Owner', role: 'po' as const, status: 'idle' as const },
-  { id: 'arch', name: 'Architect', role: 'architect' as const, status: 'idle' as const },
-  { id: 'dev', name: 'Developer', role: 'dev' as const, status: 'idle' as const },
-  { id: 'qa', name: 'QA Engineer', role: 'qa' as const, status: 'idle' as const },
-];
+import { useSprintStore } from './store/sprintStore';
 
 function App() {
-  const [agents] = useState(initialAgents);
-  const [goal, setGoal] = useState('');
-  const [artifacts] = useState<{ id: string; title: string; type: 'design' | 'code' | 'test'; preview?: string; timestamp?: string }[]>([]);
-  const [logs] = useState<{ id: string; agent: string; message: string; timestamp: string }[]>([]);
+  const { goal, setGoal, isRunning, startSprint, agents, artifacts, logs } = useSprintStore();
 
   return (
     <div className="min-h-screen bg-deep-space p-8">
@@ -38,9 +28,14 @@ function App() {
             rows={3}
             value={goal}
             onChange={(e) => setGoal(e.target.value)}
+            disabled={isRunning}
           />
-          <button className="mt-4 px-6 py-3 bg-gradient-to-r from-cyber-blue to-neon-purple rounded-lg font-medium text-white shadow-glow-blue hover:scale-105 transition-transform">
-            🚀 Start Sprint
+          <button
+            onClick={startSprint}
+            disabled={isRunning || !goal.trim()}
+            className="mt-4 px-6 py-3 bg-gradient-to-r from-cyber-blue to-neon-purple rounded-lg font-medium text-white shadow-glow-blue hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            {isRunning ? '⏳ Sprint in Progress...' : '🚀 Start Sprint'}
           </button>
         </section>
 
