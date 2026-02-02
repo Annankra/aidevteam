@@ -17,9 +17,9 @@ const typeIcons = {
 };
 
 const typeColors = {
-    design: 'border-neon-purple/50',
-    code: 'border-cyber-blue/50',
-    test: 'border-emerald-glow/50',
+    design: 'border-purple-500/50',
+    code: 'border-cyan-500/50',
+    test: 'border-emerald-400/50',
 };
 
 export function ArtifactCard({ title, type, preview, timestamp }: ArtifactCardProps) {

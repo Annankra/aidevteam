@@ -19,9 +19,9 @@ const roleIcons = {
 
 const statusColors: Record<AgentStatus, string> = {
     idle: 'from-white/10 to-white/5',
-    thinking: 'from-neon-purple/40 to-cyber-blue/40',
-    active: 'from-cyber-blue/60 to-neon-purple/60',
-    done: 'from-emerald-glow/40 to-emerald-glow/20',
+    thinking: 'from-purple-500/40 to-cyan-500/40',
+    active: 'from-cyan-500/60 to-purple-500/60',
+    done: 'from-emerald-400/40 to-emerald-400/20',
 };
 
 export function AgentOrb({ name, role, status, thought }: AgentOrbProps) {
@@ -45,13 +45,13 @@ export function AgentOrb({ name, role, status, thought }: AgentOrbProps) {
                 <Icon className="w-8 h-8 text-white/80" />
                 {status === 'thinking' && (
                     <motion.div
-                        className="absolute -top-1 -right-1 w-4 h-4 bg-neon-purple rounded-full"
+                        className="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 rounded-full"
                         animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
                         transition={{ repeat: Infinity, duration: 1 }}
                     />
                 )}
                 {status === 'done' && (
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-glow rounded-full flex items-center justify-center text-xs">
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-400 rounded-full flex items-center justify-center text-xs">
                         ✓
                     </div>
                 )}

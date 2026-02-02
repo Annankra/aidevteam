@@ -13,9 +13,9 @@ interface SystemPulseProps {
 }
 
 const agentColors: Record<string, string> = {
-    'System': 'text-emerald-glow',
-    'Product Owner': 'text-neon-purple',
-    'Architect': 'text-cyber-blue',
+    'System': 'text-emerald-400',
+    'Product Owner': 'text-purple-400',
+    'Architect': 'text-cyan-400',
     'Developer': 'text-blue-400',
     'QA': 'text-yellow-400',
 };
@@ -31,7 +31,7 @@ export function SystemPulse({ logs }: SystemPulseProps) {
 
     return (
         <section className="glass-panel p-6">
-            <h2 className="text-xl font-semibold mb-4">System Pulse</h2>
+            <h2 className="text-xl font-semibold mb-4 text-white">System Pulse</h2>
             <div
                 ref={scrollRef}
                 className="bg-black/40 rounded-lg p-4 font-mono text-sm h-48 overflow-y-auto space-y-1"

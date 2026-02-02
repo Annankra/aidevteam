@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Custom theme configuration (Tailwind v4 CSS-first approach) */
+@theme {
+  --color-cyber-blue: #00D2FF;
+  --color-neon-purple: #9D50BB;
+  --color-emerald-glow: #00C9FF;
+  --color-deep-space: #0a0a0f;
+  --color-carbon: #1a1a2e;
+  --color-glass: rgba(255, 255, 255, 0.05);
+
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+
+  --backdrop-blur-glass: 12px;
+
+  --shadow-glow-blue: 0 0 20px rgba(0, 210, 255, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(157, 80, 187, 0.3);
+}
 
 :root {
   --cyber-blue: #00D2FF;
@@ -11,13 +25,19 @@
 }
 
 body {
-  @apply bg-deep-space text-white font-sans antialiased;
+  background-color: var(--color-deep-space);
+  color: white;
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
 /* Glassmorphism utility */
 .glass-panel {
-  @apply bg-glass backdrop-blur-glass border border-white/10 rounded-2xl;
+  background-color: var(--color-glass);
+  backdrop-filter: blur(var(--backdrop-blur-glass));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
 }
 
 /* Glow effects */
@@ -31,10 +51,13 @@ body {
 
 /* Agent orb pulse animation */
 @keyframes pulse-glow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.05);
