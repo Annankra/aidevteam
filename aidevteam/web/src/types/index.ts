@@ -13,6 +13,7 @@ export interface Artifact {
     title: string;
     type: 'design' | 'code' | 'test';
     preview?: string;
+    content?: string;
     timestamp?: string;
 }
 
