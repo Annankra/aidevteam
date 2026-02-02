@@ -1,6 +1,8 @@
 import './index.css';
 import { useState } from 'react';
 import { WarRoom } from './components/WarRoom';
+import { ArtifactGallery } from './components/ArtifactGallery';
+import { SystemPulse } from './components/SystemPulse';
 
 const initialAgents = [
   { id: 'po', name: 'Product Owner', role: 'po' as const, status: 'idle' as const },
@@ -12,6 +14,8 @@ const initialAgents = [
 function App() {
   const [agents] = useState(initialAgents);
   const [goal, setGoal] = useState('');
+  const [artifacts] = useState<{ id: string; title: string; type: 'design' | 'code' | 'test'; preview?: string; timestamp?: string }[]>([]);
+  const [logs] = useState<{ id: string; agent: string; message: string; timestamp: string }[]>([]);
 
   return (
     <div className="min-h-screen bg-deep-space p-8">
@@ -43,13 +47,11 @@ function App() {
         {/* Agent War Room */}
         <WarRoom agents={agents} />
 
+        {/* Artifact Gallery */}
+        <ArtifactGallery artifacts={artifacts} />
+
         {/* System Pulse (Logs) */}
-        <section className="glass-panel p-6">
-          <h2 className="text-xl font-semibold mb-4">System Pulse</h2>
-          <div className="bg-black/30 rounded-lg p-4 font-mono text-sm text-emerald-glow h-40 overflow-y-auto">
-            <p>[System] Awaiting sprint initialization...</p>
-          </div>
-        </section>
+        <SystemPulse logs={logs} />
       </main>
     </div>
   );
