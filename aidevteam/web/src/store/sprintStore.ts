@@ -1,6 +1,31 @@
 import { create } from 'zustand';
 import type { Agent, Artifact, LogEntry, AgentStatus } from '../types';
-import { createSprintConnection, SprintWebSocket, SprintUpdate, AgentUpdateData, ArtifactData, LogData } from '../services/api';
+import { createSprintConnection, SprintWebSocket } from '../services/api';
+import type { SprintUpdate } from '../services/api';
+
+// Inline type definitions to avoid module export issues
+interface AgentUpdatePayload {
+    agent_id: string;
+    name: string;
+    status: 'idle' | 'thinking' | 'active' | 'done';
+    thought?: string;
+}
+
+interface ArtifactPayload {
+    id: string;
+    title: string;
+    type: 'design' | 'code' | 'test';
+    preview: string;
+    content: string;
+    timestamp: string;
+}
+
+interface LogPayload {
+    id: string;
+    agent: string;
+    message: string;
+    timestamp: string;
+}
 
 interface SprintStore {
     goal: string;
@@ -56,7 +81,7 @@ export const useSprintStore = create<SprintStore>((set, get) => ({
         const handleMessage = (update: SprintUpdate) => {
             switch (update.type) {
                 case 'agent_update': {
-                    const data = update.data as AgentUpdateData;
+                    const data = update.data as unknown as AgentUpdatePayload;
                     set((state) => ({
                         agents: state.agents.map((a) =>
                             a.id === data.agent_id
@@ -67,7 +92,7 @@ export const useSprintStore = create<SprintStore>((set, get) => ({
                     break;
                 }
                 case 'artifact': {
-                    const data = update.data as ArtifactData;
+                    const data = update.data as unknown as ArtifactPayload;
                     set((state) => ({
                         artifacts: [...state.artifacts, {
                             id: data.id,
@@ -81,7 +106,7 @@ export const useSprintStore = create<SprintStore>((set, get) => ({
                     break;
                 }
                 case 'log': {
-                    const data = update.data as LogData;
+                    const data = update.data as unknown as LogPayload;
                     set((state) => ({
                         logs: [...state.logs, {
                             id: data.id,
