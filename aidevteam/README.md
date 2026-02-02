@@ -34,4 +34,27 @@ PYTHONPATH=. python3 aidevteam/tests/test_sprint.py
 - **Framework**: LangChain & LangGraph
 - **Core State**: Pydantic & TypedDict
 - **Agent Framework**: Custom generic node factory with persona injection.
+- **Frontend**: Vite + React + Tailwind + Framer Motion
 - **Design Principles**: SOLID, 12-Factor App.
+
+## Context7 MCP Integration
+This project is configured to use **Context7 MCP** for up-to-date documentation lookup.
+
+### Configuration
+The `.cursor/mcp.json` file is configured to connect to Context7:
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
+```
+
+### Usage
+When prompting AI assistants, add "use context7" to fetch current documentation for:
+- **LangGraph**: State machines, nodes, edges
+- **FastAPI/Pydantic**: API patterns, validation
+- **React/Framer Motion**: Component patterns, animations
+- **Tailwind CSS**: Utility classes, configuration
