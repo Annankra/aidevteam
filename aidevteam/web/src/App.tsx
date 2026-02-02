@@ -1,6 +1,18 @@
-import './index.css'
+import './index.css';
+import { useState } from 'react';
+import { WarRoom } from './components/WarRoom';
+
+const initialAgents = [
+  { id: 'po', name: 'Product Owner', role: 'po' as const, status: 'idle' as const },
+  { id: 'arch', name: 'Architect', role: 'architect' as const, status: 'idle' as const },
+  { id: 'dev', name: 'Developer', role: 'dev' as const, status: 'idle' as const },
+  { id: 'qa', name: 'QA Engineer', role: 'qa' as const, status: 'idle' as const },
+];
 
 function App() {
+  const [agents] = useState(initialAgents);
+  const [goal, setGoal] = useState('');
+
   return (
     <div className="min-h-screen bg-deep-space p-8">
       {/* Header */}
@@ -20,28 +32,18 @@ function App() {
             className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-cyber-blue/50 resize-none"
             placeholder="Describe your application idea..."
             rows={3}
+            value={goal}
+            onChange={(e) => setGoal(e.target.value)}
           />
           <button className="mt-4 px-6 py-3 bg-gradient-to-r from-cyber-blue to-neon-purple rounded-lg font-medium text-white shadow-glow-blue hover:scale-105 transition-transform">
             🚀 Start Sprint
           </button>
         </section>
 
-        {/* Agent Status */}
-        <section className="glass-panel p-6">
-          <h2 className="text-xl font-semibold mb-6">Agent War Room</h2>
-          <div className="flex justify-around">
-            {['Product Owner', 'Architect', 'Developer', 'QA'].map((agent) => (
-              <div key={agent} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-cyber-blue/30 to-neon-purple/30 border border-cyber-blue/50 flex items-center justify-center animate-pulse-glow">
-                  <span className="text-2xl">🤖</span>
-                </div>
-                <p className="mt-2 text-sm text-white/60">{agent}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Agent War Room */}
+        <WarRoom agents={agents} />
 
-        {/* Placeholder for logs */}
+        {/* System Pulse (Logs) */}
         <section className="glass-panel p-6">
           <h2 className="text-xl font-semibold mb-4">System Pulse</h2>
           <div className="bg-black/30 rounded-lg p-4 font-mono text-sm text-emerald-glow h-40 overflow-y-auto">
@@ -50,7 +52,7 @@ function App() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
