@@ -1,28 +1,5 @@
 import { create } from 'zustand';
-import type { AgentStatus } from '../components/AgentOrb';
-
-interface Agent {
-    id: string;
-    name: string;
-    role: 'po' | 'architect' | 'dev' | 'qa';
-    status: AgentStatus;
-    thought?: string;
-}
-
-interface Artifact {
-    id: string;
-    title: string;
-    type: 'design' | 'code' | 'test';
-    preview?: string;
-    timestamp?: string;
-}
-
-interface LogEntry {
-    id: string;
-    agent: string;
-    message: string;
-    timestamp: string;
-}
+import type { Agent, Artifact, LogEntry, AgentStatus } from '../types';
 
 interface SprintStore {
     goal: string;

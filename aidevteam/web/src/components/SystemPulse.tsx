@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-
-interface LogEntry {
-    id: string;
-    agent: string;
-    message: string;
-    timestamp: string;
-}
+import type { LogEntry } from '../types';
 
 interface SystemPulseProps {
     logs: LogEntry[];

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Bot, Briefcase, Code, FlaskConical } from 'lucide-react';
-
-export type AgentStatus = 'idle' | 'thinking' | 'active' | 'done';
+import type { AgentStatus } from '../types';
 
 interface AgentOrbProps {
     name: string;

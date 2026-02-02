@@ -1,13 +1,6 @@
 import { motion } from 'framer-motion';
-import { AgentOrb, AgentStatus } from './AgentOrb';
-
-interface Agent {
-    id: string;
-    name: string;
-    role: 'po' | 'architect' | 'dev' | 'qa';
-    status: AgentStatus;
-    thought?: string;
-}
+import { AgentOrb } from './AgentOrb';
+import type { Agent } from '../types';
 
 interface WarRoomProps {
     agents: Agent[];
@@ -16,7 +9,7 @@ interface WarRoomProps {
 export function WarRoom({ agents }: WarRoomProps) {
     return (
         <section className="glass-panel p-8">
-            <h2 className="text-xl font-semibold mb-8 text-center">Agent War Room</h2>
+            <h2 className="text-xl font-semibold mb-8 text-center text-white">Agent War Room</h2>
             <div className="flex justify-around items-start">
                 {agents.map((agent, index) => (
                     <motion.div
