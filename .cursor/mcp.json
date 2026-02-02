@@ -1,0 +1,9 @@
+{
+    "mcpServers": {
+        "context7": {
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {},
+            "description": "Provides up-to-date documentation for libraries like LangGraph, React, Framer Motion, Tailwind, etc."
+        }
+    }
+}
